@@ -9,3 +9,15 @@ D, [2017-02-25T15:25:42.472952 #66113] DEBUG -- : wrong number of arguments (1 f
 D, [2017-02-25T15:25:42.473821 #66113] DEBUG -- : ["app/controllers/waypoints_controller.rb:8:in `create'"]
 D, [2017-02-25T15:30:23.246668 #66113] DEBUG -- : wrong number of arguments (1 for 0)
 D, [2017-02-25T15:30:23.247842 #66113] DEBUG -- : ["app/controllers/waypoints_controller.rb:8:in `create'"]
+D, [2017-02-26T09:18:28.334240 #45440] DEBUG -- : wrong number of arguments (1 for 0)
+D, [2017-02-26T09:18:28.335179 #45440] DEBUG -- : ["app/controllers/waypoints_controller.rb:6:in `create'"]
+D, [2017-02-26T09:23:18.619980 #45440] DEBUG -- : wrong number of arguments (1 for 0)
+D, [2017-02-26T09:23:18.621303 #45440] DEBUG -- : ["app/controllers/waypoints_controller.rb:6:in `create'"]
+D, [2017-02-26T09:26:59.363579 #45440] DEBUG -- : wrong number of arguments (1 for 0)
+D, [2017-02-26T09:26:59.364860 #45440] DEBUG -- : ["app/controllers/waypoints_controller.rb:6:in `create'"]
+D, [2017-02-26T09:27:26.253427 #45440] DEBUG -- : wrong number of arguments (1 for 0)
+D, [2017-02-26T09:27:26.254659 #45440] DEBUG -- : ["app/controllers/waypoints_controller.rb:6:in `create'"]
+D, [2017-02-26T09:44:33.099382 #45440] DEBUG -- : wrong number of arguments (1 for 0)
+D, [2017-02-26T09:44:33.100665 #45440] DEBUG -- : ["app/controllers/waypoints_controller.rb:6:in `create'"]
+D, [2017-02-26T09:45:45.497537 #45440] DEBUG -- : wrong number of arguments (1 for 0)
+D, [2017-02-26T09:45:45.498883 #45440] DEBUG -- : ["app/controllers/waypoints_controller.rb:6:in `create'"]

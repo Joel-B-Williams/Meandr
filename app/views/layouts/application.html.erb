@@ -5,6 +5,9 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcre2abiqjnD9hfGSUZX3Or2gROjuFGWw">
+    </script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -12,8 +15,6 @@
 
   <body>
     <%= yield %>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcre2abiqjnD9hfGSUZX3Or2gROjuFGWw&callback=initMap">
-    </script>
+
   </body>
 </html>
