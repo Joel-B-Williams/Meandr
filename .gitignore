@@ -11,6 +11,7 @@
 /tmp/
 /log/development.log
 log/development.log
+log/capybara_exceptions.log
 
 # Used by dotenv library to load environment variables.
 .env
