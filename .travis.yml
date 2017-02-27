@@ -1,12 +1,16 @@
 language: ruby
 rvm:
- - 2.3.0
- # - jruby
- # - rbx-2
-
+- 2.3.0
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database "Meandr_test";' -U postgres
-  - psql -U postgres -c "create extension postgis"
+- psql -c 'create database "Meandr_test";' -U postgres
+- psql -U postgres -c "create extension postgis"
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZiSaZ//MThS09M8aEMEVmZwnPwVel0sPPH+Ule18SHAo0dUP7pWKJNqo2m3NNjYtWM40k53BOYDF7VsKsuiMqVk72NBIjNhLbMRtsQ8O4H4DL2R8C+f2OKs5lPAh4xFLqdDWz3tFESKUQuti3kDYhyvxLuwN422sf+xeiu3pkXGWY7KCvN7TfDOWULK8AiEJZcNgl2/SBOLiOBIhi35rBTx/dr1Rkt25hFTeD9ohKwiIvo1wQ2bGe+aiQHP6XTbJJBXqqLpa4Ft5SL7QHeIwogqBVSOj++3Bb8GiFpGI+wVBu+Vy90FDDciWAC+bYbdaYs1jFnp59NhlC8OEtnjdEIx7zHM4NytoDNrKoRVn8ddP3y24JXwGyPAO7uf4DJlh/0sUL/i3r8WI4AeGdnz01HV/CWcdMaN7i/D3gpsD4VIzWYnPxQJWWBNDE3u1uyjcMKOVxlJ9LylrRDv/rhwUzfH2zs41dMoZvcNqtllw3P3VfXmw0KOQre+3Zrm5NMNcwnfKGWGp0dW3wgI+aGsv+hA4fv6Cl26AZ20J1NWA+50aen47+xuq4b9ox83eI2RxPAGZXjE4Zl/KT5zl3vYZwsony6i+gRUXxiVpUJQvQKGaomXzGZi9n8CgvOl0vi6IVrHZtyxiQZtDV+ZnuTgnpBnYaymHP1u01eT6wTKAq4I=
+  app: meandr
+  on:
+    repo: Joel-B-Williams/Meandr
+cache: bundler

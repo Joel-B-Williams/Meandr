@@ -1,0 +1,2 @@
+module MeandrsHelper
+end

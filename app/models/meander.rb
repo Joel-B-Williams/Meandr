@@ -33,4 +33,8 @@ class Meander < ApplicationRecord
     (number + 1).times { path.pop }
     path
   end
+
+  def self.assemble_meander_coordinates(array_waypoints)
+    array_waypoints.map { |waypoint| waypoint.location.coordinates }
+  end
 end
