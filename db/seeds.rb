@@ -19,19 +19,48 @@ Waypoint.create(location: 'POINT(-87.648000 41.871955)') #5 9UIC student center
 
 Waypoint.create(location: 'POINT(-87.647670 41.884654)') #6 10Au Cheval
 
-# Distance used:
-  # This is 1 mile.
 
-1000.times do
-  x = rand(41.86037366..41.88504033)
-  y = rand(-87.661557333..-87.64489066)
+# What is this measure?  Distance used?
+# This is 1 mile.
+
+#centered on DBC give or take
+#41.876452, -87.653214
+10000.times do
+  x = rand( 41.85471286956522..41.89819113043478)
+  y = rand(-87.68068652747253..-87.62574147252748)
   Waypoint.create(location: "POINT(#{y} #{x})")
 end
 
+# # #1 mile north
+# #41.890891, -87.653244
 # 1000.times do
-#   x = rand(41.86037366..41.88504033)
-#   y = rand(-87.661557333..-87.64489066)
-#   Waypoint.create(location: "POINT(#{x} #{y})")
+#   x = rand(41.8825576635..41.899224336500005)
+#   y = rand(-87.6615773365..-87.6449106635)
+#   Waypoint.create(location: "POINT(#{y} #{x})")
+# end
+
+# # #2 miles north -> goose island
+# # #41.905397, -87.653659
+# 1000.times do
+#   x = rand(41.8970636635..41.9137303365)
+#   y = rand(-87.6619923365..-87.6453256635)
+#   Waypoint.create(location: "POINT(#{y} #{x}")
+# end
+
+# # #3 miles north -> lincoln park, near ba-ba-reeba/armitage stop
+# #41.919876, -87.654084
+# 1000.times do
+#   x = rand(41.9115426635..41.928209336500004)
+#   y = rand(-87.6624173365..-87.6457506635)
+#   Waypoint.create(location: "POINT(#{y} #{x}")
+# end
+
+# #second city
+# #41.911504, -87.635253
+# 1000.times do
+#   x = rand(41.9031706635..41.9198373365)
+#   y = rand(-87.64358633650001.. -87.6269196635)
+#   Waypoint.create(location: "POINT(#{y} #{x}")
 # end
 
 # Test Walk from DBC to 648 W Randolph Street.
