@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20170226005304) do
   end
 
   create_table "waypoints", force: :cascade do |t|
-    t.geography "location",   limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.datetime  "created_at",                                                          null: false
-    t.datetime  "updated_at",                                                          null: false
+    t.geometry "location",   limit: {:srid=>0, :type=>"point"}
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
 end
