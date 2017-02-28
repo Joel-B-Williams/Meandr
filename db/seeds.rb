@@ -5,21 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Waypoint.create(location: 'POINT(41.876451 -87.653213)') #0 4dbc
-Waypoint.create(location: 'POINT(41.879618 -87.647487)') #1 5dugans
-Waypoint.create(location: 'POINT(41.876647 -87.657238)') #2 6wise owl
-Waypoint.create(location: 'POINT(41.874853 -87.656140)') #3 7UIC
-Waypoint.create(location: 'POINT(41.875540 -87.647181)') #4 8blue line
-Waypoint.create(location: 'POINT(41.871955 -87.647998)') #5 9student center
-Waypoint.create(location: 'POINT(41.884659 -87.647666)') #6 10Au Cheval
+Waypoint.create(location: 'POINT(-87.653217 41.876448)') #0 4dbc
 
-# What is this measure?  Distance used?
-# This is 1 mile.
+Waypoint.create(location: 'POINT(-87.647490 41.879617)') #1 5dugans
+
+Waypoint.create(location: 'POINT(-87.657240 41.876645)') #2 6wise owl
+
+Waypoint.create(location: 'POINT(-87.656140 41.874853)') #3 7UIC Pavillion
+
+Waypoint.create(location: 'POINT(-87.647180 41.875540)') #4 8UIC blue line
+
+Waypoint.create(location: 'POINT(-87.648000 41.871955)') #5 9UIC student center
+
+Waypoint.create(location: 'POINT(-87.647670 41.884654)') #6 10Au Cheval
+
+# Distance used:
+  # This is 1 mile.
+
+1000.times do
+  x = rand(41.86037366..41.88504033)
+  y = rand(-87.661557333..-87.64489066)
+  Waypoint.create(location: "POINT(#{y} #{x})")
+end
+
 # 1000.times do
 #   x = rand(41.86037366..41.88504033)
 #   y = rand(-87.661557333..-87.64489066)
 #   Waypoint.create(location: "POINT(#{x} #{y})")
 # end
+
 # Test Walk from DBC to 648 W Randolph Street.
 # 4,215.71 ft
 

@@ -1,7 +1,7 @@
 class WaypointsController < ApplicationController
 
   def create
-    @waypoint = Waypoint.new(location: "POINT(#{params[:location][:lat]} #{params[:location][:lng]})")
+    @waypoint = Waypoint.new(location: "POINT(#{params[:location][:lng]}) #{params[:location][:lat]} ")
     if @waypoint.save
       if request.xhr?
         "hello"

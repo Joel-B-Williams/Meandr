@@ -7,15 +7,19 @@ class MeandrsController < ApplicationController
 
     if request.xhr?
       # Waypoint.create(location: 'POINT(41.876451 -87.653213)')
-      start_point = Waypoint.new(location: "POINT(#{meandr_params[:startLatitude]} #{meandr_params[:startLongitude]})")
-      end_point = Waypoint.new(location: "POINT(#{meandr_params[:endLatitude]} #{meandr_params[:endLongitude]})")
+      start_point = Waypoint.new(location: "POINT(#{meandr_params[:startLongitude]} #{meandr_params[:startLatitude]})")
+      end_point = Waypoint.new(location: "POINT(#{meandr_params[:endLongitude]} #{meandr_params[:endLatitude]})")
       meandr = Meander.new
       # p "*"*50
       meandr_array = meandr.meander(start_point, end_point)
+      # p meandr
+      # p start_point
+      # p end_point
+      # p meandr_array
       # p "*"*50
       meandr_coordinates = Meander.assemble_meander_coordinates(meandr_array)
-      start_coordinates = start_point.location.coordinates
-      end_coordinates = end_point.location.coordinates
+      start_coordinates = start_point.location.coordinates.reverse
+      end_coordinates = end_point.location.coordinates.reverse
       # p "FINISHED RUBY PASSBACK" * 20
       # p meandr_coordinates
       # p start_coordinates
@@ -30,4 +34,9 @@ class MeandrsController < ApplicationController
   def meandr_params
     params.require(:meandr).permit(:startLatitude, :startLongitude, :endLatitude, :endLongitude)
   end
+end
+
+
+def swap_lat_lng(coords)
+  coords = cords.reverse
 end
