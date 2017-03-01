@@ -10,21 +10,27 @@ class MeandrsController < ApplicationController
       start_point = Waypoint.new(location: "POINT(#{meandr_params[:startLongitude]} #{meandr_params[:startLatitude]})")
       end_point = Waypoint.new(location: "POINT(#{meandr_params[:endLongitude]} #{meandr_params[:endLatitude]})")
       meandr = Meander.new
-      # p "*"*50
-      meandr_array = meandr.meander(start_point, end_point)
-      # p meandr
-      # p start_point
-      # p end_point
-      # p meandr_array
-      # p "*"*50
-      meandr_coordinates = Meander.assemble_meander_coordinates(meandr_array)
-      start_coordinates = start_point.location.coordinates.reverse
-      end_coordinates = end_point.location.coordinates.reverse
-      # p "FINISHED RUBY PASSBACK" * 20
-      # p meandr_coordinates
-      # p start_coordinates
-      # p end_coordinates
-      render json: { start: start_coordinates, end: end_coordinates, waypoints: meandr_coordinates }
+      meandr_distance = meandr.initial_distance(start_point, end_point)
+      p meandr_distance
+      if meandr_distance < 160000
+        # p "*"*50
+        meandr_array = meandr.meander(start_point, end_point)
+        # p meandr
+        # p start_point
+        # p end_point
+        # p meandr_array
+        # p "*"*50
+        meandr_coordinates = Meander.assemble_meander_coordinates(meandr_array)
+        start_coordinates = start_point.location.coordinates.reverse
+        end_coordinates = end_point.location.coordinates.reverse
+        # p "FINISHED RUBY PASSBACK" * 20
+        # p meandr_coordinates
+        # p start_coordinates
+        # p end_coordinates
+        render json: { status: 200, start: start_coordinates, end: end_coordinates, waypoints: meandr_coordinates }
+      else
+        render json: { status: 422, alert: 'Please choose a more reasonable meandr.  We want you coming back alive!' }
+      end
     else
     end
   end

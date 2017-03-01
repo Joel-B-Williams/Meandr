@@ -19,6 +19,7 @@
 $(document).ready(function(){
   initMap();
   $("#add-waypoint-button").on("click", function(){
+    // console.log('click')
     navigator.geolocation.getCurrentPosition(findLocation);
   });
 });
@@ -63,7 +64,7 @@ function setEndPoint(markers, searchBox, map){
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
       if (!place.geometry) {
-        console.log("Returned place contains no geometry");
+        // console.log("Returned place contains no geometry");
         return;
       }
       document.getElementById('end-location').innerHTML = place.geometry.location;
@@ -105,13 +106,25 @@ function clickMeanderButton(markers, directionsDisplay){
   var endPointLat = $('#desired-end-lat').html()
   var endPointLng = $('#desired-end-long').html()
   if (endPointLat == "end latitude") {
-    alert('Search for an endpoint')
+    $('#error').show();
+    $('#error').html('<b>We all love to wander aimlessly...</b><br><b>... but sadly in this instance we could really use a destination.');
+      setTimeout(function() {
+          $('#error').fadeOut('slow');
+          }, 5000);
     }
     else {
       getWalkingRoute(startPointLat, startPointLng, endPointLat, endPointLng, map, directionsDisplay);
     }
   });
 }
+
+function findLocation(pos) {
+  var crd = pos.coords;
+  var myLatLng = {lat: crd.latitude, lng: crd.longitude};
+  // console.log('findlocation');
+  // console.log(myLatLng);
+  saveLocation(myLatLng);
+};
 
 function setStartLocation(map, markers){
   if (navigator.geolocation) {
@@ -131,7 +144,10 @@ function setStartLocation(map, markers){
       map.setCenter(myLatLng);
     });
   } else {
-    alert('GeoLocation is not supported by your browser');
+
+    // Is this something google api provides?
+    $('#error').html("<b>GeoLocation is not supported by your browser<b>");
+    // alert('GeoLocation is not supported by your browser');
   }
 }
 
@@ -150,10 +166,20 @@ function saveLocation(myLatLng) {
     .done(function(response) {
       // console.log("success");
       // console.log(response);
+      $("#thanks").show();
       $("#thanks").html("<b>Thank you for sharing this location with us!</b>")
+        setTimeout(function() {
+            $('#thanks').fadeOut('slow');
+            }, 5000);
     })
-    .fail(function() {
-      console.log("error");
+    .fail(function(response) {
+      // console.log("error");
+      // console.log(response.alert);
+      $("#error").show();
+      $("#error").html("<b>We were unable to save your location, please ensure GeoLocation is supported.</b>");
+        setTimeout(function() {
+            $('#thanks').fadeOut('slow');
+            }, 5000);
     })
 };
 
@@ -171,14 +197,28 @@ function getWalkingRoute(startLat, startLng, endLat, endLng, map, directionsDisp
     data: { meandr: meandr_info },
     })
     .done(function(response) {
-      var startPoint = convertWaypoint(response.start);
-      var endPoint = convertWaypoint(response.end);
-      var convertedWaypoints = convertWaypoints(response.waypoints);
-      getDirectionsMap(startPoint, endPoint, convertedWaypoints, map, directionsDisplay);
-
+      // console.log(response)
+      // console.log(response.alert)
+      if (response.status == 200) {
+        var startPoint = convertWaypoint(response.start);
+        var endPoint = convertWaypoint(response.end);
+        var convertedWaypoints = convertWaypoints(response.waypoints);
+        getDirectionsMap(startPoint, endPoint, convertedWaypoints, map, directionsDisplay);
+      }
+      else {
+        // console.log(response.alert);
+        $('#error').show();
+        $('#error').html('<b>' + response.alert + '</b>');
+        setTimeout(function() {
+            $('#error').fadeOut('fast');
+            }, 5000);
+      }
     })
-    .fail(function() {
-      console.log("error");
+    .fail(function(response) {
+      $('#error').html("<b>Sorry, something went awry there.<b><br><b>Give it another try?<b>");
+        setTimeout(function() {
+            $('#error').fadeOut('fast');
+            }, 5000);
     })
 }
 
@@ -206,7 +246,11 @@ function getDirectionsMap(startPoint, endPoint, convertedWaypoints, map, directi
       directionsDisplay.setDirections(response);
       // var routes = response.routes[0];
     } else {
-      window.alert('Directions request failed due to ' + status);
+      $('#error').show();
+      $('#error').html('<b>Directions request failed due to ' + status + '</b>');
+      setTimeout(function() {
+        $('#error').fadeOut('fast');
+        }, 5000);
     }
   })
 }
@@ -217,8 +261,6 @@ function clearMarkers(markers){
   });
   markers = [];
 }
-
-
 
   // // Declare all the variables we'll need to use.
   // var infowindow = null;

@@ -1,7 +1,6 @@
 class Meander < ApplicationRecord
   # has_many :waypoints
 
-
   def meander(current_waypoint, destination)
     # 150 m min
     min_search_radius = 150
@@ -14,6 +13,9 @@ class Meander < ApplicationRecord
   end
 
   def route_path(current_waypoint, destination, distance_to_end, min_search_radius, max_search_radius, points_of_interest = [])
+    if distance_to_end > 160000
+
+    end
     # p "*"*60
     # p "calls function"
     # p "here are our variables"
@@ -91,7 +93,7 @@ class Meander < ApplicationRecord
 
     a = (Math::sin(dlat/2)**2) + Math::cos(rlat1) * Math::cos(rlat2) * (Math::sin(dlon/2)**2)
     c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
-    d = r * c
+    p d = r * c
   end
 
   def self.assemble_meander_coordinates(array_waypoints)
